@@ -133,3 +133,7 @@ lspconfig.clangd.setup {
     on_attach = on_attachc,
     capabilities = capabilities,
 }
+lspconfig.pyright.setup {
+    on_attach = on_attachc,
+    capabilities = capabilities,
+}

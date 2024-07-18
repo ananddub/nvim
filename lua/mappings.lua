@@ -46,7 +46,7 @@ if vim.g.neovide == true then
         vim.g.neovide_floating_blur_amount_x = 0.5
         vim.g.neovide_floating_blur_amount_y = 0.5
         vim.g.neovide_window_blurred = true
-        -- radius mvim.g.neovide_floating_shadow = true
+        vim.g.neovide_floating_shadow = true
         vim.g.neovide_floating_z_height = 10
         vim.g.neovide_light_angle_degrees = 45
         vim.g.neovide_light_radius = 5
@@ -67,7 +67,7 @@ function Run_current_file()
     local dir = vim.fn.fnamemodify(file, ":h")
     local filetype = vim.bo.filetype
     local cmd = ""
-    local fullname = vim.fn.fnamemodify(file, ":t") --without extension file name
+    local fullname = vim.fn.fnamemodify(file, ":t")   --without extension file name
     local filename = vim.fn.fnamemodify(file, ":t:r") -- with extension file name
     vim.fn.chdir(dir)
     if filetype == "python" then
@@ -95,7 +95,7 @@ function Run_current_file()
     -- Keypress("i", "n")
     -- Keypress("<cr>", "i")
 
-    vim.cmd "w"
+    vim.cmd "w!"
     vim.cmd("!" .. cmd)
     vim.fn.chdir "-"
 end

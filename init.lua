@@ -24,12 +24,39 @@ require("lazy").setup({
             require "options"
         end,
     },
-    { "codota/tabnine-nvim", build = "./dl_binaries.sh" },
+    -- { "codota/tabnine-nvim", build = "./dl_binaries.sh" },
 
     { import = "plugins" },
 }, lazy_config)
 
-require("nvim-ts-autotag").setup()
+require('nvim-ts-autotag').setup({
+    opts = {
+        -- Defaults
+        enable_close = true,          -- Auto close tags
+        enable_rename = true,         -- Auto rename pairs of tags
+        enable_close_on_slash = false -- Auto close on trailing </
+    },
+    -- Also override individual filetype configs, these take priority.
+    -- Empty by default, useful if one of the "opts" global settings
+    -- doesn't work well in a specific filetype
+    per_filetype = {
+        ["html"] = {
+            eenable_rename = true,
+            enable_close_on_slash = false,
+            nable_close = false
+        },
+        ["javascriptreact"] = {
+            enable_close = true,
+            enable_rename = true,
+            enable_close_on_slash = false
+        },
+        ["typescriptreact"] = {
+            enable_close = true,
+            enable_rename = true,
+            enable_close_on_slash = false
+        },
+    }
+})
 -- load theme
 dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")
@@ -40,15 +67,15 @@ vim.schedule(function()
     require "mappings"
 end)
 
-require("tabnine").setup {
-    disable_auto_comment = true,
-    accept_keymap = "<Tab>",
-    dismiss_keymap = "<C-]>",
-    debounce_ms = 800,
-    suggestion_color = { gui = "#808080", cterm = 244 },
-    exclude_filetypes = { "TelescopePrompt", "NvimTree" },
-    log_file_path = nil, -- absolute path to Tabnine log file
-}
+-- require("tabnine").setup {
+--     disable_auto_comment = true,
+--     accept_keymap = "<Tab>",
+--     dismiss_keymap = "<C-]>",
+--     debounce_ms = 800,
+--     suggestion_color = { gui = "#808080", cterm = 244 },
+--     exclude_filetypes = { "TelescopePrompt", "NvimTree" },
+--     log_file_path = nil, -- absolute path to Tabnine log file
+-- }
 
 vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = "*",

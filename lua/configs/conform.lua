@@ -8,6 +8,7 @@ local options = {
         c = { "stylua" },
         java = { "stylua" },
         json = { "stylua" },
+        dart = { "prettier" },
         toml = { "stylua" },
         css = { "prettier" },
         html = { "prettier" },

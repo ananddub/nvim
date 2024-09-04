@@ -3,14 +3,21 @@ require "nvchad.mappings"
 -- add yours here
 
 local map = vim.keymap.set
-
-map("n", ";", ":", { desc = "CMD enter command mode" })
-map("i", "jk", "<ESC>")
+local opts = { noremap = true, silent = true }
+map({ "n", "v" }, "Tab", ">>", { desc = "Tab space" })
+map({ "n", "v" }, "<S-Tab>", "<<", { desc = "Tab space" })
 
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 
 --comment
 map({ "i", "v" }, "<C-_>", "<esc>:CommentToggle<cr>i", { desc = "CommentToggle" })
+map({ 'n', 'v' }, '<leader>fr', ':FlutterRun<CR>')
+map({ 'n', 'v' }, '<leader>fd', ':FlutterDevices<CR>')
+map({ 'n', 'v' }, '<leader>fe', ':FlutterEmulators<CR>')
+map({ 'n', 'v' }, '<leader>fre', ':FlutterReload<CR>')
+map({ 'n', 'v' }, '<leader>fR', ':FlutterReload<CR>')
+map('v', '<C-j>', ":m '>+1<CR>gv=gv", opts)
+map('v', '<C-k>', ":m '<-2<CR>gv=gv", opts)
 map({ "n", "v" }, "<C-_>", ":CommentToggle<cr>", { desc = "CommentToggle" })
 map({ "v", "v" }, "<C-_>", ":'<,'>CommentToggle<cr>", { desc = "CommentToggle" })
 
@@ -41,6 +48,7 @@ if vim.g.neovide == true then
         vim.api.nvim_set_keymap("n", "<C-z>", "", {})
         vim.g.neovide_cursor_smooth_blink = true
         -- transparency mode on
+        --
         vim.g.neovide_transparency = 0.6
         vim.g.transparency = 0.6
         vim.g.neovide_floating_blur_amount_x = 0.5
@@ -50,6 +58,7 @@ if vim.g.neovide == true then
         vim.g.neovide_floating_z_height = 10
         vim.g.neovide_light_angle_degrees = 45
         vim.g.neovide_light_radius = 5
+        --
         -- contrastt enable
         -- vim.g.neovide_text_gamma = 0.2
         -- vim.g.neovide_text_contrast = 0.2

@@ -4,9 +4,6 @@ require "nvchad.mappings"
 
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
-map({ "n", "v" }, "Tab", ">>", { desc = "Tab space" })
-map({ "n", "v" }, "<S-Tab>", "<<", { desc = "Tab space" })
-
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 
 --comment
@@ -16,8 +13,13 @@ map({ 'n', 'v' }, '<leader>fd', ':FlutterDevices<CR>')
 map({ 'n', 'v' }, '<leader>fe', ':FlutterEmulators<CR>')
 map({ 'n', 'v' }, '<leader>fre', ':FlutterReload<CR>')
 map({ 'n', 'v' }, '<leader>fR', ':FlutterReload<CR>')
+
 map('v', '<C-j>', ":m '>+1<CR>gv=gv", opts)
 map('v', '<C-k>', ":m '<-2<CR>gv=gv", opts)
+
+map("v", "<Tab>", ">", { desc = "Tab space" })
+map("v", "<S-Tab>", "<", { desc = "Tab space" })
+
 map({ "n", "v" }, "<C-_>", ":CommentToggle<cr>", { desc = "CommentToggle" })
 map({ "v", "v" }, "<C-_>", ":'<,'>CommentToggle<cr>", { desc = "CommentToggle" })
 
@@ -33,7 +35,7 @@ if vim.g.neovide == false then
         highlight LineNr guibg=NONE ctermbg=NONE
         highlight Folded guibg=NONE ctermbg=NONE
         highlight EndOfBuffer guibg=NONE ctermbg=NONE
-    ]]
+        ]]
 end
 
 if vim.g.neovide == true then
@@ -133,3 +135,24 @@ map(
     ":lua Run_current_file()<CR>",
     { noremap = true, silent = true, desc = "Excute the program with ctrl+F9 in this F33 refers to ctrl+F9" }
 )
+
+local insert = { "i", "v" }
+
+map(insert, "<C-y>", function()
+    require("neocodeium").accept()
+end)
+vim.keymap.set("i", "<C-w>", function()
+    require("neocodeium").accept_word()
+end)
+vim.keymap.set("i", "<C-a>", function()
+    require("neocodeium").accept_line()
+end)
+vim.keymap.set("i", "<C-e>", function()
+    require("neocodeium").cycle_or_complete()
+end)
+vim.keymap.set("i", "<C-r>", function()
+    require("neocodeium").cycle_or_complete(-1)
+end)
+map(insert, "<C-n>", function()
+    require("neocodeium").clear()
+end)

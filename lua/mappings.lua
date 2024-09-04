@@ -15,9 +15,10 @@ map('v', '<C-k>', ":m '<-2<CR>gv=gv", opts)
 map('i', '<C-j>', "<Esc>:m .+1<CR>==gi", opts)
 map('i', '<C-k>', "<Esc>:m .-2<CR>==gi", opts)
 
-map('n', '<C-j>', "<Esc>:m .+1<CR>==gn", opts)
-map('n', '<C-k>', "<Esc>:m .-2<CR>==gn", opts)
 
+map('n', '<C-a>', "ggVG", opts)
+map('i', '<C-a>', "<esc>ggVG", opts)
+map('v', '<C-a>', "ggVG", opts)
 
 
 
@@ -160,7 +161,7 @@ map(insert, "<C-w>", function()
     require("neocodeium").accept_word()
 end)
 
-map(insert, "<C-a>", function()
+map(insert, "<C-l>", function()
     require("neocodeium").accept_line()
 end)
 

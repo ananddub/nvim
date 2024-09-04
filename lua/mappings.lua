@@ -2,20 +2,25 @@ require "nvchad.mappings"
 
 -- add yours here
 
+local insert = { "i", "v" }
+local normal = { "n", "v" }
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 
 --comment
-map({ "i", "v" }, "<C-_>", "<esc>:CommentToggle<cr>i", { desc = "CommentToggle" })
-map({ 'n', 'v' }, '<leader>fr', ':FlutterRun<CR>')
-map({ 'n', 'v' }, '<leader>fd', ':FlutterDevices<CR>')
-map({ 'n', 'v' }, '<leader>fe', ':FlutterEmulators<CR>')
-map({ 'n', 'v' }, '<leader>fre', ':FlutterReload<CR>')
-map({ 'n', 'v' }, '<leader>fR', ':FlutterReload<CR>')
-
 map('v', '<C-j>', ":m '>+1<CR>gv=gv", opts)
 map('v', '<C-k>', ":m '<-2<CR>gv=gv", opts)
+
+map('i', '<C-j>', "<Esc>:m .+1<CR>==gi", opts)
+map('i', '<C-k>', "<Esc>:m .-2<CR>==gi", opts)
+
+map('n', '<C-j>', "<Esc>:m .+1<CR>==gn", opts)
+map('n', '<C-k>', "<Esc>:m .-2<CR>==gn", opts)
+
+
+
+
 
 map("v", "<Tab>", ">", { desc = "Tab space" })
 map("v", "<S-Tab>", "<", { desc = "Tab space" })
@@ -26,6 +31,16 @@ map({ "v", "v" }, "<C-_>", ":'<,'>CommentToggle<cr>", { desc = "CommentToggle" }
 map({ "i", "v" }, "<C-.>", "<esc>:CommentToggle<cr>i", { desc = "CommentToggle" })
 map({ "n", "v" }, "<C-.>", ":CommentToggle<cr>", { desc = "CommentToggle" })
 map({ "v", "v" }, "<C-.>", ":'<,'>CommentToggle<cr>", { desc = "CommentToggle" })
+
+
+map({ "i", "v" }, "<C-_>", "<esc>:CommentToggle<cr>i", { desc = "CommentToggle" })
+map({ 'n', 'v' }, '<leader>fr', ':FlutterRun<CR>')
+map({ 'n', 'v' }, '<leader>fd', ':FlutterDevices<CR>')
+map({ 'n', 'v' }, '<leader>fe', ':FlutterEmulators<CR>')
+map({ 'n', 'v' }, '<leader>fre', ':FlutterReload<CR>')
+map({ 'n', 'v' }, '<leader>fR', ':FlutterReload<CR>')
+
+
 
 -- shift navigation slection
 if vim.g.neovide == false then
@@ -136,23 +151,27 @@ map(
     { noremap = true, silent = true, desc = "Excute the program with ctrl+F9 in this F33 refers to ctrl+F9" }
 )
 
-local insert = { "i", "v" }
 
 map(insert, "<C-y>", function()
     require("neocodeium").accept()
 end)
-vim.keymap.set("i", "<C-w>", function()
+
+map(insert, "<C-w>", function()
     require("neocodeium").accept_word()
 end)
-vim.keymap.set("i", "<C-a>", function()
+
+map(insert, "<C-a>", function()
     require("neocodeium").accept_line()
 end)
-vim.keymap.set("i", "<C-e>", function()
+
+map(insert, "<C-e>", function()
     require("neocodeium").cycle_or_complete()
 end)
-vim.keymap.set("i", "<C-r>", function()
+
+map(insert, "<C-r>", function()
     require("neocodeium").cycle_or_complete(-1)
 end)
+
 map(insert, "<C-n>", function()
     require("neocodeium").clear()
 end)

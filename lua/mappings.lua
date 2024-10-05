@@ -9,19 +9,16 @@ local opts = { noremap = true, silent = true }
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 
 --comment
-map('v', '<C-j>', ":m '>+1<CR>gv=gv", opts)
-map('v', '<C-k>', ":m '<-2<CR>gv=gv", opts)
+map("v", "<C-j>", ":m '>+1<CR>gv=gv", opts)
+map("v", "<C-k>", ":m '<-2<CR>gv=gv", opts)
 
-map('i', '<C-j>', "<Esc>:m .+1<CR>==gi", opts)
-map('i', '<C-k>', "<Esc>:m .-2<CR>==gi", opts)
+map("i", "<C-j>", "<Esc>:m .+1<CR>==gi", opts)
+map("i", "<C-k>", "<Esc>:m .-2<CR>==gi", opts)
 
-
-map('n', '<C-a>', "ggVG", opts)
-map('i', '<C-a>', "<esc>ggVG", opts)
-map('v', '<C-a>', "ggVG", opts)
-
-
-
+-- map('n', '<C-a>', "ggVG", opts)
+-- map('i', '<C-a>', "<esc>ggVG", opts)
+-- map('v', '<C-a>', "ggVG", opts)
+--
 
 map("v", "<Tab>", ">", { desc = "Tab space" })
 map("v", "<S-Tab>", "<", { desc = "Tab space" })
@@ -33,15 +30,12 @@ map({ "i", "v" }, "<C-.>", "<esc>:CommentToggle<cr>i", { desc = "CommentToggle" 
 map({ "n", "v" }, "<C-.>", ":CommentToggle<cr>", { desc = "CommentToggle" })
 map({ "v", "v" }, "<C-.>", ":'<,'>CommentToggle<cr>", { desc = "CommentToggle" })
 
-
 map({ "i", "v" }, "<C-_>", "<esc>:CommentToggle<cr>i", { desc = "CommentToggle" })
-map({ 'n', 'v' }, '<leader>fr', ':FlutterRun<CR>')
-map({ 'n', 'v' }, '<leader>fd', ':FlutterDevices<CR>')
-map({ 'n', 'v' }, '<leader>fe', ':FlutterEmulators<CR>')
-map({ 'n', 'v' }, '<leader>fre', ':FlutterReload<CR>')
-map({ 'n', 'v' }, '<leader>fR', ':FlutterReload<CR>')
-
-
+map({ "n", "v" }, "<leader>fr", ":FlutterRun<CR>")
+map({ "n", "v" }, "<leader>fd", ":FlutterDevices<CR>")
+map({ "n", "v" }, "<leader>fe", ":FlutterEmulators<CR>")
+map({ "n", "v" }, "<leader>fre", ":FlutterReload<CR>")
+map({ "n", "v" }, "<leader>fR", ":FlutterReload<CR>")
 
 -- shift navigation slection
 if vim.g.neovide == false then
@@ -94,7 +88,7 @@ function Run_current_file()
     local dir = vim.fn.fnamemodify(file, ":h")
     local filetype = vim.bo.filetype
     local cmd = ""
-    local fullname = vim.fn.fnamemodify(file, ":t")   --without extension file name
+    local fullname = vim.fn.fnamemodify(file, ":t") --without extension file name
     local filename = vim.fn.fnamemodify(file, ":t:r") -- with extension file name
     vim.fn.chdir(dir)
     if filetype == "python" then
@@ -151,7 +145,6 @@ map(
     ":lua Run_current_file()<CR>",
     { noremap = true, silent = true, desc = "Excute the program with ctrl+F9 in this F33 refers to ctrl+F9" }
 )
-
 
 map(insert, "<C-y>", function()
     require("neocodeium").accept()
